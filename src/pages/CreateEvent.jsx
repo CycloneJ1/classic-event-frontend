@@ -4,23 +4,40 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react"
 
-const API_URL = "http://localhost:5174"
+
+const API_URL = "http://localhost:5005"
 
 
 function CreateEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+
   const [location, setLocation] = useState("");
+
   const [imageUrl, setImageUrl] = useState("");
-  const [guests, setGuests] = useState("")
+  const [guests, setGuests] = useState([])
+  const nameOptions = [
+    { _id: "1", name: "Alice" },
+    { _id: "2", name: "Bob" },
+    { _id: "3", name: "Charlie" },
+    { _id: "4", name: "David" },
+    // Add more names as needed
+  ];
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { title, description, date, location, imageUrl, guests };
+    const storedToken = localStorage.getItem("authToken");
+
+    const requestBody = { title, description, date, guests };
     axios
-      .post(`${API_URL}/api/events`, requestBody)
+      .post(`${API_URL}/api/events`, requestBody, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`
+        }
+      })
       .then((response) => {
 
         setTitle("");
@@ -47,15 +64,16 @@ function CreateEvent(props) {
         />
 
         <label>Description:</label>
-        <textarea
+        <input
           name="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
+
         <label>Date:</label>
         <input
-          type="text"
+          type="date" // Use type="date" for date input
           name="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -77,15 +95,31 @@ function CreateEvent(props) {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <label>Guests:</label>
-        <input
-          type="text"
-          name="guests"
-          value={guests}
-          onChange={(e) => setGuests(e.target.value)}
-        />
+        <label htmlFor="guests" className="form-label">
+          Guests add & invite:
+          <select
+            name="guests"
+            className="form-select select-custom"
+            multiple
+            value={guests}
+            onChange={(e) => setGuests(Array.from(e.target.selectedOptions, (option) => option.value))}
+          >
+            {nameOptions.map((option) => (
+              <option key={option._id} value={option._id}>
+                {option.name}
+              </option>
+            ))}
+            {/* Your guest options here */}
+          </select>
+        </label>
+        <div id="multiSelectHelp" className="form-text">
+          To choose more than one, hold CTRL.
+        </div>
 
-        <button type="submit">Submit</button>
+        {/* Submit button */}
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </div>
     </form>
   );
