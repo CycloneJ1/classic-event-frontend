@@ -4,39 +4,40 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react"
 
+const API_URL = "http://localhost:5174"
+
+
 function CreateEvent(props) {
-  const [title, setTitle] = useState()
-  const [description,setDescription] = useState()
-  const [date, setDate] = useState()
-  const [location, setLocation] = useState()
-  const [imageUrl, setImageUrl] = useState()
-  const [guests, setGuests] = useState([])
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [guests, setGuests] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const requestBody = { title, description, date, location, imageUrl, guests };
-    const API_URL = "http://localhost:5174/events/create"
     axios
       .post(`${API_URL}/api/events`, requestBody)
       .then((response) => {
 
-          setTitle("");
-          setDescription("");
-          setDate("");
-          setLocation("");
-          setImageUrl("");
-          setGuests("");
+        setTitle("");
+        setDescription("");
+        setDate("");
+        setLocation("");
+        setImageUrl("");
+        setGuests("");
 
-          props.refreshProjects();
+        // props.refreshProjects();
       })
       .catch((error) => console.log(error));
   };
   return (
-    <div className="AddProject">
-      <h3>Create</h3>
-
-      <form>
+    <form onSubmit={handleSubmit} method="post">
+      <div className="Event">
+        <h3>Create</h3>
         <label>Title:</label>
         <input
           type="text"
@@ -47,49 +48,47 @@ function CreateEvent(props) {
 
         <label>Description:</label>
         <textarea
-          type="text"
           name="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
-
         <label>Date:</label>
         <input
           type="text"
-          name="title"
-          value={title}
+          name="date"
+          value={date}
           onChange={(e) => setDate(e.target.value)}
         />
 
         <label>Location:</label>
         <input
           type="text"
-          name="title"
-          value={title}
+          name="location"
+          value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
 
         <label>ImageUrl:</label>
         <input
           type="text"
-          name="title"
-          value={title}
+          name="imageUrl"
+          value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
         <label>Guests:</label>
         <input
           type="text"
-          name="title"
-          value={title}
+          name="guests"
+          value={guests}
           onChange={(e) => setGuests(e.target.value)}
         />
 
         <button type="submit">Submit</button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
-
 }
+
 export default CreateEvent;
