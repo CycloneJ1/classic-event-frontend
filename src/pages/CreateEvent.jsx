@@ -1,82 +1,95 @@
 import react from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container } from "react-bootstrap";
-import {useState} from "react"
+import { Container, Form, Button } from "react-bootstrap";
+import { useState } from "react"
 
-function CreateEvent() {
-  const [eventDetails, setEventDetails] = useState({
-    title: '',
-    date: '',
-    location: '',
-    description: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEventDetails({ ...eventDetails, [name]: value });
-  };
+function CreateEvent(props) {
+  const [title, setTitle] = useState()
+  const [description,setDescription] = useState()
+  const [date, setDate] = useState()
+  const [location, setLocation] = useState()
+  const [imageUrl, setImageUrl] = useState()
+  const [guests, setGuests] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to a server or perform other actions
-    console.log('Form submitted with data:', eventDetails);
+
+    const requestBody = { title, description, date, location, imageUrl, guests };
+    const API_URL = "http://localhost:5174/events/create"
+    axios
+      .post(`${API_URL}/api/events`, requestBody)
+      .then((response) => {
+
+          setTitle("");
+          setDescription("");
+          setDate("");
+          setLocation("");
+          setImageUrl("");
+          setGuests("");
+
+          props.refreshProjects();
+      })
+      .catch((error) => console.log(error));
   };
-
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="eventTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            placeholder="Enter event title"
-            value={eventDetails.title}
-            onChange={handleChange}
-          />
-        </Form.Group>
+    <div className="AddProject">
+      <h3>Create</h3>
 
-        <Form.Group controlId="eventDate">
-          <Form.Label>Date</Form.Label>
-          <Form.Control
-            type="date"
-            name="date"
-            value={eventDetails.date}
-            onChange={handleChange}
-          />
-        </Form.Group>
+      <form>
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-        <Form.Group controlId="eventLocation">
-          <Form.Label>Location</Form.Label>
-          <Form.Control
-            type="text"
-            name="location"
-            placeholder="Enter event location"
-            value={eventDetails.location}
-            onChange={handleChange}
-          />
-        </Form.Group>
+        <label>Description:</label>
+        <textarea
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-        <Form.Group controlId="eventDescription">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={4}
-            name="description"
-            placeholder="Enter event description"
-            value={eventDetails.description}
-            onChange={handleChange}
-          />
-        </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Create Event
-        </Button>
+        <label>Date:</label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setDate(e.target.value)}
+        />
 
-      </Form>
-    </Container>
+        <label>Location:</label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+
+        <label>ImageUrl:</label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+
+        <label>Guests:</label>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setGuests(e.target.value)}
+        />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
+
 }
 export default CreateEvent;
