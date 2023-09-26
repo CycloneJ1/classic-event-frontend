@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 const API_URL = "http://localhost:5005";
 
 function EventList() {
@@ -20,7 +21,7 @@ function EventList() {
   }, []);
   return (
     <div>
-      <h1>This is the EventList Page</h1>
+      <h1>These are your Events</h1>
       {events.map((event) => {
       return  <p key={event._id}>{event.title}</p>;
       })}
