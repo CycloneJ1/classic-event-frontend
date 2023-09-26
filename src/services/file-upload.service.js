@@ -19,7 +19,7 @@ const uploadImage = async (file) => {
 
 const createEvent = async (newEvent) => {
   try {
-    const response = await api.post("/events", newEvent);
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}api/events`, newEvent);
     return response.data;
   } catch (err) {
     errorHandler(err);

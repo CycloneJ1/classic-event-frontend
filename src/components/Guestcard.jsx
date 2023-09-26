@@ -1,9 +1,10 @@
 import React from "react";
 
-function Guestcard({ name, email }) {
+function Guestcard({ name, email, image }) {
     return (
         <div className="guest-card">
-            <h3>Name:{name}</h3>
+            {<img src={image} alt={`Profile of ${name}`} />}
+            <h3>Name of guest: {name}</h3>
             <p>Email: {email}</p>
         </div>
     );

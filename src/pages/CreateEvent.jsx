@@ -5,8 +5,6 @@ import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import service from "../../src/services/file-upload.service";
 
-const API_URL = "http://localhost:5005";
-
 function CreateEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -35,7 +33,7 @@ function CreateEvent(props) {
     const requestBody = { title, description, imageUrl };
 
     try {
-      await axios.post(`${API_URL}/api/events`, requestBody, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/events`, requestBody, {
         headers: {
           Authorization: `Bearer ${storedToken}`
         }

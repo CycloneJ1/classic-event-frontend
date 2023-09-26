@@ -3,8 +3,6 @@ import axios from "axios";
 import AddGuest from "../components/AddGuest";
 import Guestcard from "../components/Guestcard";
 
-const API_URL = "http://localhost:5005";
-
 function GuestList() {
   const [guests, setGuests] = useState([]);
 
@@ -12,7 +10,7 @@ function GuestList() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/api/guests`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/guests`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setGuests(response.data))
