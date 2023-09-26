@@ -19,7 +19,16 @@ const uploadImage = async (file) => {
 
 const createEvent = async (newEvent) => {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}api/events`, newEvent);
+    const response = await api.post("/api/events", newEvent); // Fixed the URL here
+    return response.data;
+  } catch (err) {
+    errorHandler(err);
+  }
+};
+
+const createGuest = async (newGuest) => {
+  try {
+    const response = await api.post("/api/guests", newGuest); // Fixed the URL here
     return response.data;
   } catch (err) {
     errorHandler(err);
@@ -29,4 +38,5 @@ const createEvent = async (newEvent) => {
 export default {
   uploadImage,
   createEvent,
+  createGuest
 };

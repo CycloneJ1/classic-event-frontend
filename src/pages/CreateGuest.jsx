@@ -7,26 +7,26 @@ import { useNavigate } from "react-router-dom";
 function CreateGuest(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState("");
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
 
     const storedToken = localStorage.getItem("authToken");
-    const requestBody = { name, email, image };
+    const guestData = { name, email, imageUrl };
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/guests`, requestBody, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/guests`, guestData, {
         headers: {
           Authorization: `Bearer ${storedToken}`
         }
       });
       setName("");
       setEmail("");
-      setImage(null);
+      setImageUrl("");
       navigate("/guests");
     } catch (err) {
       setError("Error while adding the new guest.");
@@ -36,7 +36,7 @@ function CreateGuest(props) {
 
   return (
     <div className="Guest">
-      <h3>Create Guest Profile</h3>
+      <h3>Create Guest</h3>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -69,7 +69,7 @@ function CreateGuest(props) {
             type="file"
             id="image"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])} 
+            onChange={(e) => setImageUrl(e.target.value)}
           />
         </div>
 

@@ -78,12 +78,12 @@ function CreateEvent(props) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="imageUrl">Upload Image:</label>
+          <label htmlFor="image">Upload Image:</label>
           <input
             type="file"
-            id="imageUrl"
-            accept="imageUrl/*"
-            onChange={(e) => handleImageChange(e)}
+            id="image"
+            accept="image/*"
+            onChange={(e) => {imageUrl}}
             required
           />
         </div>

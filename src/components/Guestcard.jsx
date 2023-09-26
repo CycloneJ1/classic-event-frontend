@@ -1,13 +1,13 @@
 import React from "react";
 
-function Guestcard({ name, email, image }) {
-    return (
-        <div className="guest-card">
-            {<img src={image} alt={`Profile of ${name}`} />}
-            <h3>Name of guest: {name}</h3>
-            <p>Email: {email}</p>
-        </div>
-    );
+function Guestcard({ name, imageUrl, onDelete }) {
+  return (
+    <div>
+      <img src={imageUrl} alt={name} />
+      <h3>{name}</h3>
+      <button onClick={onDelete}>Delete</button>
+    </div>
+  );
 }
 
 export default Guestcard;
