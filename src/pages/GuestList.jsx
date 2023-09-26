@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddGuest from "../components/AddGuest";
 import Guestcard from "../components/Guestcard";
 
 function GuestList() {
   const [guests, setGuests] = useState([]);
+  const [title, setTitle] = useState(""); // Assuming you have title and description state
+  const [description, setDescription] = useState("");
 
   const getAllGuests = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -17,20 +18,40 @@ function GuestList() {
       .catch((error) => console.log(error));
   };
 
+  const createGuest = () => {
+    const storedToken = localStorage.getItem("authToken");
+
+    const requestBody = {
+      title: title,
+      description: description,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/guests`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        // Reset the state
+        setTitle("");
+        setDescription("");
+        getAllGuests(); // Refresh the guest list
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
     getAllGuests();
   }, []);
 
   return (
     <div>
-
-      <div className="GuestList">
-        <AddGuest refreshGuests={getAllGuests} />
-
-        {guests.map((guest) => (
-          <Guestcard key={guest._id} {...guest} />
-        ))}
-      </div>
+      {guests.map((guest) => (
+        <Guestcard
+          key={guest._id}
+          name={guest.name}
+          imageUrl={guest.imageUrl}
+        />
+      ))}
     </div>
   );
 }

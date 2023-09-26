@@ -17,12 +17,16 @@ function EventList() {
   useEffect(() => {
     getAllEvents();
   }, []);
+
   return (
     <div>
       <h1>These are your Events</h1>
-      {events.map((event) => {
-      return  <p key={event._id}>{event.title}</p>;
-      })}
+      {events.map((event) => (
+        <div key={event._id}>
+          <p>{event.title}</p>
+          <img src={event.imageUrl} alt={event.title} />
+        </div>
+      ))}
     </div>
   );
 }
