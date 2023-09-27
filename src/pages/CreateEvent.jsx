@@ -3,56 +3,56 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import service from "../../src/services/file-upload.service";
+import service from "../../src/services/file-upload.service"
+
 
 function CreateEvent(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  const storedToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
-  const handleImageChange = async (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const newEvent = {title, description, imageUrl}
+    console.log(newEvent)
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/events`, newEvent,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+      .then(response => {
+        navigate("/events")
+      })
+      .catch(err => console.log("error", err))
+   }
+
+     // ******** this method handles the file upload ********
+  const handleFileUpload = (e) => {
+    e.preventDefault()
+    // console.log("The file to be uploaded is: ", e.target.files[0]);  
     const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("imageUrl", e.target.files[0]);
-
-    try {
-      const response = await service.uploadImage(uploadData);
-      setImageUrl(response.imageUrl);
-    } catch (err) {
-      setError("Error while uploading the file.");
-      console.error("Error while uploading the file: ", err);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null); 
-
-    const storedToken = localStorage.getItem("authToken");
-    const requestBody = { title, description, imageUrl };
-
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/events`, requestBody, {
-        headers: {
-          Authorization: `Bearer ${storedToken}`
-        }
-      });
-      setTitle("");
-      setDescription("");
-      setImageUrl("");
-      navigate("/events");
-    } catch (err) {
-      setError("Error while adding the new event.");
-      console.error("Error while adding the new event: ", err);
-    }
+    service
+      .uploadImage(uploadData)
+      .then(response => {
+        console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(response.fileUrl);
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
   };
 
   return (
     <div className="Event">
       <h3>Create Event</h3>
       {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
@@ -79,13 +79,7 @@ function CreateEvent(props) {
 
         <div className="form-group">
           <label htmlFor="image">Upload Image:</label>
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={(e) => {imageUrl}}
-            required
-          />
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
         </div>
 
         <button type="submit" className="btn btn-primary">

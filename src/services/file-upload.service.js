@@ -10,7 +10,7 @@ const errorHandler = (err) => {
 
 const uploadImage = async (file) => {
   try {
-    const response = await api.post("/upload", file);
+    const response = await api.post("/api/upload", file);
     return response.data;
   } catch (err) {
     errorHandler(err);
