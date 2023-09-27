@@ -55,7 +55,7 @@ function App() {
         />
 
         <Route
-          path="/events/update"
+          path="/events/update/:eventId"
           element={
             <IsPrivate>
               <UpdateEvent />

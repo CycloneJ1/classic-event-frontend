@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import axios from "axios";
-import eventService from "../services/Event.service";
+// import eventService from "../services/Event.service";
 
 function EventList() {
   const [events, setEvents] = useState([]);
   const [updatedEventData] = useState ([])
+
 const storedToken = localStorage.getItem("authToken");
 
   const getAllEvents = () => {    
@@ -16,8 +18,6 @@ const storedToken = localStorage.getItem("authToken");
       .catch((error) => console.log(error));
   };
   
-  
-
   // eventService.getAllEvents()
   // .then((response)=>setEvents(response.data))
   // .catch((error)=> console.log(error))
@@ -55,6 +55,8 @@ const storedToken = localStorage.getItem("authToken");
   //     .catch((error) => console.error("Error deleting event:", error));
   // };
 
+  
+
   useEffect(() => {
     getAllEvents();
   }, []);
@@ -66,9 +68,11 @@ const storedToken = localStorage.getItem("authToken");
         <div key={event._id}>
           <p>{event.title}</p>
           <img src={event.imageUrl} alt={event.title} />
-          <button onClick={() => updateEvents(event._id,updatedEventData)}>
+          <Link to = {`/events/update/${event._id}`}>
+          <button>
             Update Event
           </button>
+          </Link>
           {/* <button onClick={deleteEvent}>Delete Event</button> */}
         </div>
 

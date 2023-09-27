@@ -8,23 +8,23 @@ function UpdateEvent() {
   const navigate = useNavigate();
   const storedToken = localStorage.getItem('authToken');
 
-
-  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [title, setTitle] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
 
   useEffect(() => {
     // Fetch the event data from the server when the component mounts
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/events`,
+      .get(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`,
       {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const oneEvent = response.data;
-        setTitle(oneEvent.title);
-        setDescription(oneEvent.description);
-        // setImageUrl(oneEvent.imageUrl);
+      console.log(response.data)
+
+      setTitle(response.data.title)
+      setDescription(response.data.description)
+      setImageUrl(response.data.imageUrl)
       })
       .catch((error) => console.error("Error fetching event data:", error));
   }, [eventId]);
@@ -35,20 +35,20 @@ function UpdateEvent() {
     const updateEvents = {
       title,
       description,
-    //   imageUrl,
+      imageUrl,
     };
 
     // Send a PUT request to update the event
     axios
-      .put(`${import.meta.env.VITE_API_URL}/api/events`, 
+      .put(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`,updateEvents ,
       {
         headers: { Authorization: `Bearer ${storedToken}` },
-      }), 
-      updateEvents
+      })
+
       .then(() => {
         console.log("Event updated successfully");
         // Redirect to the event details page after the update
-        navigate(`/events/${eventId}`);
+        navigate(`/events`);
       })
       .catch((error) => console.error("Error updating event:", error));
   };
@@ -73,13 +73,13 @@ function UpdateEvent() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label>Image URL:</label>
+        {/* <label>Image URL:</label>
         <input
           type="text"
           name="imageUrl"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-        />
+        /> */}
 
         <button type="submit">Update Event</button>
       </form>
