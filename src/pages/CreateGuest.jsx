@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function CreateGuest(props) {
@@ -37,46 +37,41 @@ function CreateGuest(props) {
   return (
     <div className="Guest">
       <h3>Create Guest</h3>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
+      {error && <Alert variant="danger">{error}</Alert>}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="name">
+          <Form.Label>Name:</Form.Label>
+          <Form.Control
             type="text"
-            id="name"
-            name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
+        <Form.Group controlId="email">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
             type="email"
-            id="email"
-            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
+        </Form.Group>
 
-        <div className="form-group">
-          <label htmlFor="image">Image:</label>
-          <input
+        <Form.Group controlId="image">
+          <Form.Label>Image:</Form.Label>
+          <Form.Control
             type="file"
-            id="image"
             accept="image/*"
             onChange={(e) => setImageUrl(e.target.value)}
           />
-        </div>
+        </Form.Group>
 
-        <button type="submit" className="btn btn-primary">
+        <Button variant="primary" type="submit">
           Submit
-        </button>
-      </form>
+          </Button>
+      </Form>
     </div>
   );
 }

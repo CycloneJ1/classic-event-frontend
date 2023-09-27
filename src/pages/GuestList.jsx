@@ -49,6 +49,8 @@ function GuestList() {
 
   return (
     <div>
+      <h1>Guests added</h1>
+
       {guests.map((guest) => (
         <Guestcard
           key={guest._id}

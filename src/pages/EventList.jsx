@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
+import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom"
+
 import axios from "axios";
 import eventService from "../services/Event.service";
 
@@ -57,30 +61,23 @@ function EventList() {
   }, []);
 
   return (
-    <div>
+<div>
       <h1>Events Created</h1>
       {events.map((event) => (
-        <div key={event._id}>
-          <h2>{event.title}</h2>
-          <h2>{event.description}</h2>
-          <img src={event.imageUrl} alt={event.title} />
-          <Link to={`/events/update/${event._id}`}>
-            <button>
-              Update Event
-            </button>
-          </Link>
-
-
-
-          <Link to={`/events/delete/${event._Id}`}>
-          </Link>
-          <button onClick={() => deleteEvent(event._id)}>
-            Delete Event
-          </button>
-        </div>
-
+        <Card key={event._id}>
+          <Card.Img variant="top" src={event.imageUrl} alt={event.title} />
+          <Card.Body>
+            <Card.Title>{event.title}</Card.Title>
+            <Card.Text>{event.description}</Card.Text>
+            <Link to={`/events/update/${event._id}`}>
+              <Button variant="primary">Update Event</Button>
+            </Link>
+            <Button variant="danger" onClick={() => deleteEvent(event._id)}>
+              Delete Event
+            </Button>
+          </Card.Body>
+        </Card>
       ))}
-
     </div>
   );
 }
