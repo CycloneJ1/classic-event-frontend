@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+      <div className="container-fluid justify-content-center">
         <Link className="navbar-brand" to="/">
           Classic Event
         </Link>

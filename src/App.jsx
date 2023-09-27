@@ -10,6 +10,8 @@ import LoginPage from "./pages/LoginPage";
 import CustomNavbar from "./components/Navbar";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import UpdateEvent from "./pages/UpdateEvent";
+// import DeleteEvent from "./pages/DeleteEvent";
 
 function App() {
   return (
@@ -51,6 +53,24 @@ function App() {
             </IsPrivate>
           }
         />
+
+        <Route
+          path="/events/update"
+          element={
+            <IsPrivate>
+              <UpdateEvent />
+            </IsPrivate>
+          }
+        />
+
+        {/* <Route
+          path="/events/delete"
+          element={
+            <IsPrivate>
+              <DeleteEvent />
+            </IsPrivate>
+          }
+        /> */}
 
         <Route
           path="/auth/signup"
