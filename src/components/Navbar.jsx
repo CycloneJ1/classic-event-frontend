@@ -61,9 +61,7 @@ function Navbar() {
           <div className="col d-flex justify-content-end align-items-center gap-3">
             {isLoggedIn && (
               <>
-                <Link to="/events">
-                  <button>My Events</button>
-                </Link>
+
 
                 <span>{user && user.name}</span>
                 <button onClick={logOutUser}>Logout</button>

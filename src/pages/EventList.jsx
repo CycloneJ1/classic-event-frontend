@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import axios from "axios";
-// import eventService from "../services/Event.service";
+import eventService from "../services/Event.service";
 
 function EventList() {
   const [events, setEvents] = useState([]);
-  const [updatedEventData] = useState ([])
+  const [updatedEventData] = useState([]);
+  // const [deletedEventData] = useState([])
 
-const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem("authToken");
 
-  const getAllEvents = () => {    
+  const getAllEvents = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/events`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -17,16 +18,13 @@ const storedToken = localStorage.getItem("authToken");
       .then((response) => setEvents(response.data))
       .catch((error) => console.log(error));
   };
-  
-  // eventService.getAllEvents()
-  // .then((response)=>setEvents(response.data))
-  // .catch((error)=> console.log(error))
+
 
   useEffect(() => {
     getAllEvents();
   }, []);
 
-  
+
   const updateEvents = (eventId, updatedEventData) => {
     axios
       .put(`${import.meta.env.VITE_API_URL}/api/update/${eventId}`, updatedEventData, {
@@ -41,39 +39,44 @@ const storedToken = localStorage.getItem("authToken");
       .catch((error) => console.error("Error updating event:", error));
   };
 
-  // const deleteEvent = (eventId) => {
-  //   axios
-  //     .delete(`${import.meta.env.VITE_API_URL}/api/delete/${eventId}`, {
-  //       headers: { Authorization: `Bearer ${storedToken}` },
-  //     })
-  //     .then(() => {
-  //       // Handle successful event deletion
-  //       // You may want to navigate or show a success message here
-  //       console.log("Event deleted successfully");
-  //       getAllEvents(); // Refresh the event list after deleting
-  //     })
-  //     .catch((error) => console.error("Error deleting event:", error));
-  // };
+  const deleteEvent = (eventId) => {
+    axios
+      .delete(`${import.meta.env.VITE_API_URL}/api/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => {
+        console.log("Event deleted successfully");
+        getAllEvents();
+      })
+      .catch((error) => console.error("Error deleting event:", error));
+  };
 
-  
 
   useEffect(() => {
     getAllEvents();
   }, []);
 
   return (
-    <div c>
-      <h1>These are your Events</h1>
+    <div>
+      <h1>Events Created</h1>
       {events.map((event) => (
         <div key={event._id}>
-          <p>{event.title}</p>
+          <h2>{event.title}</h2>
+          <h2>{event.description}</h2>
           <img src={event.imageUrl} alt={event.title} />
-          <Link to = {`/events/update/${event._id}`}>
-          <button>
-            Update Event
-          </button>
+          <Link to={`/events/update/${event._id}`}>
+            <button>
+              Update Event
+            </button>
           </Link>
-          {/* <button onClick={deleteEvent}>Delete Event</button> */}
+
+
+
+          <Link to={`/events/delete/${event._Id}`}>
+          </Link>
+          <button onClick={() => deleteEvent(event._id)}>
+            Delete Event
+          </button>
         </div>
 
       ))}
