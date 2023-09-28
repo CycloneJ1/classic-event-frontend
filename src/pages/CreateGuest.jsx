@@ -8,7 +8,6 @@ function CreateGuest(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,7 +15,7 @@ function CreateGuest(props) {
     setError(null);
 
     const storedToken = localStorage.getItem("authToken");
-    const guestData = { name, email, imageUrl };
+    const guestData = { name, email };
 
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/guests`, guestData, {
@@ -26,7 +25,6 @@ function CreateGuest(props) {
       });
       setName("");
       setEmail("");
-      setImageUrl("");
       navigate("/guests");
     } catch (err) {
       setError("Error while adding the new guest.");
@@ -56,15 +54,6 @@ function CreateGuest(props) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="image">
-          <Form.Label>Image:</Form.Label>
-          <Form.Control
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImageUrl(e.target.value)}
           />
         </Form.Group>
 
