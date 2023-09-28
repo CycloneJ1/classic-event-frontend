@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Container, Form, Button, Col, Image } from "react-bootstrap";
+
 
 function UpdateEvent() {
     const { eventId } = useParams();
@@ -55,36 +57,47 @@ function UpdateEvent() {
 
 
     return (
-        <div className="updateEvents">
-            <h3>Edit the Event</h3>
-
-            <form onSubmit={handleFormSubmit}>
-                <label>Title:</label>
-                <input
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-
-                <label>Description:</label>
-                <textarea
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
-                {/* <label>Image URL:</label>
-        <input
-          type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        /> */}
-
-                <button type="submit">Update Event</button>
-            </form>
-        </div>
+        <Container>
+        <h3 className="my-3">Update your Event</h3>
+  
+        <Form onSubmit={handleFormSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Title:</Form.Label>
+            <Form.Control
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </Form.Group>
+  
+          <Form.Group className="mb-3">
+            <Form.Label>Description:</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Form.Group>
+  
+          <Form.Label>Your Image</Form.Label>
+          <Form.Group className="mb-3">
+            {imageUrl && (
+              <Image
+                src={imageUrl}
+                alt="Event"
+                fluid
+                style={{ maxHeight:"10%" }}
+              />
+            )}
+          </Form.Group>
+  
+          <Button variant="primary" type="submit">
+            Update Event
+          </Button>
+        </Form>
+      </Container>
     );
 }
 

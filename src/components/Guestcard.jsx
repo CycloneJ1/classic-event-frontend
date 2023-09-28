@@ -8,7 +8,6 @@ function Guestcard({ name, imageUrl ,email}) {
     <Card>
       <Card.Img src={imageUrl} alt={""} />
       <Card.Body>
-      <p>Guest added!</p>
         <Card.Title>{name}</Card.Title>
         <Card.Title>{email}</Card.Title>
 
