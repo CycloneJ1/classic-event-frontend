@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
-
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  console.log("halooooo from the navbar")
-  console.log("isLoggedIn", isLoggedIn)
-  // console.log("user", user)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
-        <Link className="navbar-brand custom-brand" to="/">
+        <Link className="navbar-brand" to="/">
           Classic Event
         </Link>
         <button
@@ -50,7 +45,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <div className="mr-auto">
+          <div className="navbar-text">
             {isLoggedIn ? (
               <div className="d-flex align-items-center">
                 <span className="text-light mr-2">Welcome, {user && user.name}</span>

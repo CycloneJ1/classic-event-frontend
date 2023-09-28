@@ -12,8 +12,10 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import UpdateEvent from "./pages/UpdateEvent";
 
+
 function App() {
   return (
+    
     <div className="App">
       <CustomNavbar />
       <Routes>
@@ -81,6 +83,8 @@ function App() {
       </Routes>
     </div>
   );
+
+  
 }
 
 export default App;

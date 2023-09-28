@@ -63,7 +63,7 @@ function EventList() {
       <h1>Events Created</h1>
       {events.map((event) => (
         <Card key={event._id}>
-          <Card.Img variant="top" src={event.imageUrl} alt={event.title} />
+          <Card.Img variant="top" src={event.imageUrl} alt={imageUrl} />
           <Card.Body>
             <Card.Title>{event.title}</Card.Title>
             <Card.Text>{event.description}</Card.Text>
