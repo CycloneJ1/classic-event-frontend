@@ -44,3 +44,10 @@
 .container-fluid{
   justify-content: center;
 }
+
+.custom-brand {
+  font-size: 50px; /* Adjust the font size */
+  font-weight: bold; /* Make it bold */
+  color: #fff; /* Change the text color to white */
+  /* Add more styles as needed */
+}
