@@ -62,15 +62,6 @@ function App() {
           }
         />
 
-        {/* <Route
-          path="/events/delete/:eventId"
-          element={
-            <IsPrivate>
-              <DeleteEvent />
-            </IsPrivate>
-          }
-        /> */}
-
         <Route
           path="/auth/signup"
           element={

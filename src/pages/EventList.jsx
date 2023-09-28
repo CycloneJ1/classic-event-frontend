@@ -5,12 +5,10 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom"
 
 import axios from "axios";
-import eventService from "../services/Event.service";
 
 function EventList() {
   const [events, setEvents] = useState([]);
   const [updatedEventData] = useState([]);
-  // const [deletedEventData] = useState([])
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -61,7 +59,7 @@ function EventList() {
   }, []);
 
   return (
-<div>
+    <div>
       <h1>Events Created</h1>
       {events.map((event) => (
         <Card key={event._id}>
