@@ -95,13 +95,13 @@ function LoginPage(props) {
         )}
 
         <p>you'll be redirected to the homepage</p>
-      
+
         <button type="submit" className="btn btn-success">
           Log in
         </button>
       </form>
       <p>Don't have an account yet?</p>
-       <button className="btn btn-primary"> <Link to={"/auth/signup"} className="text-white"> Sign Up</Link></button>
+      <button className="btn btn-primary"> <Link to={"/auth/signup"} className="text-white"> Sign Up</Link></button>
     </div>
   );
 }

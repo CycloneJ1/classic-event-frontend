@@ -16,7 +16,6 @@ function HomePage() {
             <h3>Event Planning</h3>
             <p>We plan and execute events that leave lasting impressions.</p>
           </Col>
-          {/* Add more service columns here */}
         </Row>
       </Container>
 

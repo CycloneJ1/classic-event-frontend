@@ -41,9 +41,9 @@ function App() {
         <Route
           path="/events"
           element={
-            <IsPrivate>
+            // <IsPrivate>
               <EventList />
-            </IsPrivate>
+            // {/* </IsPrivate> */}
           }
         />
         <Route

@@ -58,46 +58,46 @@ function UpdateEvent() {
 
     return (
         <Container>
-        <h3 className="my-3">Update your Event</h3>
-  
-        <Form onSubmit={handleFormSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Title:</Form.Label>
-            <Form.Control
-              type="text"
-              name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </Form.Group>
-  
-          <Form.Group className="mb-3">
-            <Form.Label>Description:</Form.Label>
-            <Form.Control
-              as="textarea"
-              name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </Form.Group>
-  
-          <Form.Label>Your Image</Form.Label>
-          <Form.Group className="mb-3">
-            {imageUrl && (
-              <Image
-                src={imageUrl}
-                alt="Event"
-                fluid
-                style={{ maxHeight:"10%" }}
-              />
-            )}
-          </Form.Group>
-  
-          <Button variant="primary" type="submit">
-            Update Event
-          </Button>
-        </Form>
-      </Container>
+            <h3 className="my-3">Update your Event</h3>
+
+            <Form onSubmit={handleFormSubmit}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Title:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Description:</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </Form.Group>
+
+                <Form.Label>Your Image</Form.Label>
+                <Form.Group className="mb-3">
+                    {imageUrl && (
+                        <Image
+                            src={imageUrl}
+                            alt="Event"
+                            fluid
+                            style={{ maxHeight: "10%" }}
+                        />
+                    )}
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Update Event
+                </Button>
+            </Form>
+        </Container>
     );
 }
 

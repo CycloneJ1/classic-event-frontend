@@ -2,11 +2,9 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import Nav from 'react-bootstrap/Nav';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
 import ImageSrc from "../images/classiceventlogo.png"; // Adjust the path as needed
+
 
 
 
@@ -15,11 +13,10 @@ function Navbar() {
 
   return (
     <>
-
       <div>
         <Image src={ImageSrc} style={{ width: "200px", height: "150px" }} rounded />
       </div>
-    
+
       <Nav className="justify-content-center" activeKey="/">
         <Nav.Item>
           <Nav.Link as={Link} to="/">
@@ -32,10 +29,10 @@ function Navbar() {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link as={Link} to="/guests/create">
-              Create Guest
-            </Nav.Link>
-          </Nav.Item>
+          <Nav.Link as={Link} to="/guests/create">
+            Create Guest
+          </Nav.Link>
+        </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to="/events">
             Events

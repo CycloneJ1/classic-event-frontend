@@ -61,32 +61,30 @@ function EventList() {
   }, []);
 
   return (
-<div>
-  <h1>Events Created</h1>
-  <Row>
-    {events.map((event, index) => (
-      <Col key={event._id} xs={12} sm={6} md={4}>
-        <Card>
-          <Card.Img variant="top" src={event.imageUrl} alt="" />
-          <Card.Body>
-          <span className="label">Event:</span>
-            <Card.Title>{event.title}</Card.Title>
-            <span className="label">Information:</span>
-            <Card.Title>{event.description}</Card.Title>
-            <Link to={`/events/update/${event._id}`}>
-              <Button variant="primary">Update Event</Button>
-            </Link>
-            <Button variant="danger" onClick={() => deleteEvent(event._id)}>
-              Delete Event
-            </Button>
-          </Card.Body>
-        </Card>
-      </Col>
-      // Render a new row after every third card
-      // {index % 3 === 2 && <div className="w-100"></div>}
-    ))}
-  </Row>
-</div>
+    <div>
+      <h1>Events Created</h1>
+      <Row>
+        {events.map((event, index) => (
+          <Col key={event._id} xs={12} sm={6} md={4}>
+            <Card>
+              <Card.Img variant="top" src={event.imageUrl} alt="" />
+              <Card.Body>
+                <span className="label">Event:</span>
+                <Card.Title>{event.title}</Card.Title>
+                <span className="label">Information:</span>
+                <Card.Title>{event.description}</Card.Title>
+                <Link to={`/events/update/${event._id}`}>
+                  <Button variant="primary">Update Event</Button>
+                </Link>
+                <Button variant="danger" onClick={() => deleteEvent(event._id)}>
+                  Delete Event
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 }
 

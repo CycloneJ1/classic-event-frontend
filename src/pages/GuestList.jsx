@@ -7,7 +7,6 @@ function GuestList() {
   const [guests, setGuests] = useState([]);
   const [title, setTitle] = useState(""); // Assuming you have title and description state
   const [description, setDescription] = useState("");
-  // const [imageUrl, setImageUrl] = useState("")
 
   const getAllGuests = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -26,7 +25,6 @@ function GuestList() {
     const requestBody = {
       title: title,
       description: description,
-      // imageUrl: imageUrl,
     };
 
     axios
@@ -37,7 +35,6 @@ function GuestList() {
         // Reset the state
         setTitle("");
         setDescription("");
-        // setImageUrl("")
         getAllGuests(); // Refresh the guest list
       })
       .catch((error) => console.log(error));
