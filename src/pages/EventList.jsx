@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { Row, Col } from 'react-bootstrap';
+
 
 import axios from "axios";
 
@@ -59,14 +61,18 @@ function EventList() {
   }, []);
 
   return (
-    <div>
-      <h1>Events Created</h1>
-      {events.map((event) => (
-        <Card key={event._id}>
-          <Card.Img variant="top" src={event.imageUrl} alt={""} />
+<div>
+  <h1>Events Created</h1>
+  <Row>
+    {events.map((event, index) => (
+      <Col key={event._id} xs={12} sm={6} md={4}>
+        <Card>
+          <Card.Img variant="top" src={event.imageUrl} alt="" />
           <Card.Body>
+          <span className="label">Event:</span>
             <Card.Title>{event.title}</Card.Title>
-            <Card.Text>{event.description}</Card.Text>
+            <span className="label">Information:</span>
+            <Card.Title>{event.description}</Card.Title>
             <Link to={`/events/update/${event._id}`}>
               <Button variant="primary">Update Event</Button>
             </Link>
@@ -75,8 +81,12 @@ function EventList() {
             </Button>
           </Card.Body>
         </Card>
-      ))}
-    </div>
+      </Col>
+      // Render a new row after every third card
+      // {index % 3 === 2 && <div className="w-100"></div>}
+    ))}
+  </Row>
+</div>
   );
 }
 

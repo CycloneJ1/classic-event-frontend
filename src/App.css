@@ -45,4 +45,206 @@
   justify-content: center;
 }
 
+body {
+  font-family: Arial, sans-serif;
+}
 
+/* Customize primary button color */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Customize primary button hover color */
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Customize secondary button color */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+/* Customize secondary button hover color */
+.btn-secondary:hover {
+  background-color: #545b62;
+  border-color: #545b62;
+}
+
+/* Customize card styles */
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize card header */
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Customize card title */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Customize card text */
+.card-text {
+  font-size: 1rem;
+}
+
+/* Customize form control styles */
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+/* Customize form control focus state */
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Customize navbar styles */
+.navbar {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Customize navbar link color */
+.navbar a {
+  color: #fff;
+}
+
+/* Customize navbar link hover color */
+.navbar a:hover {
+  color: #007bff;
+}
+
+/* Customize footer styles */
+.footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Customize link color */
+a {
+  color: #007bff;
+}
+
+/* Customize link hover color */
+a:hover {
+  color: #0056b3;
+}
+
+/* Add more custom styles as needed */
+
+/* Override Bootstrap container padding */
+.container {
+  padding: 20px;
+}
+
+/* Override Bootstrap container-fluid padding */
+.container-fluid {
+  padding: 20px;
+}
+
+/* Override Bootstrap container max-width */
+.container, .container-fluid {
+  max-width: 1200px;
+}
+
+/* Override Bootstrap alert styles */
+.alert {
+  border-radius: 0.25rem;
+}
+
+/* Override Bootstrap alert success color */
+.alert-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+/* Override Bootstrap alert success link color */
+.alert-success a {
+  color: #fff;
+}
+
+/* Override Bootstrap alert success link hover color */
+.alert-success a:hover {
+  color: #1e7e34;
+}
+
+/* Customize modal styles */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Customize modal content styles */
+.modal-content {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize modal header styles */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Customize modal title styles */
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Customize modal body styles */
+.modal-body {
+  font-size: 1rem;
+}
+
+/* Customize modal footer styles */
+.modal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Customize tooltip styles */
+.tooltip {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Customize popover styles */
+.popover {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize popover header styles */
+.popover-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Customize popover title styles */
+.popover-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Customize popover content styles */
+.popover-content {
+  font-size: 0.875rem;
+}
