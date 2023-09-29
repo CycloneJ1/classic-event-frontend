@@ -10,10 +10,10 @@ function HomePage() {
       </Container>
 
       <Container className="services mt-5" id="services">
-        <h2>Services</h2>
+      <h3>Event Planning</h3>
         <Row>
           <Col>
-            <h3>Event Planning</h3>
+
             <p>We plan and execute events that leave lasting impressions.</p>
           </Col>
         </Row>
